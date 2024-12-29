@@ -1,0 +1,146 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "About";
+}
+
+
+    <div class="breadcrumb-area gray-bg-7">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a asp-action="index">Home</a></li>
+                    <li class="active">About us </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="about-us-area pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7 d-flex align-items-center">
+                    <div class="overview-content-2">
+                        <h2>@Model.Setting.AboutTitle</h2>
+                        <p class="peragraph-blog">@Model.Setting.AboutDescF</p>
+                        <p>@Model.Setting.AboutDescS</p>
+                        <div class="overview-btn mt-45">
+                            <a class="btn-style-2" href="shop.html">@Model.Setting.AboutDescBtnTxt</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="overview-img text-center">
+                        <a href="#">
+                            <img src="~/assets/img/banner/@Model.Setting.AboutImg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="project-count-area gray-bg pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model.AboutInfos)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-count text-center mb-30">
+                            <div class="count-icon">
+                                @Html.Raw(item.Icon)
+                            </div>
+                            <div class="count-title">
+                                <h2 class="count">@item.Count</h2>
+                                <span>@item.Title</span>
+                            </div>
+                        </div>
+                    </div>
+                }     
+            </div>
+        </div>
+    </div>
+    <div class="team-area pt-75 pb-50">
+        <div class="container">
+            <div class="text-center mb-40">
+                <h4 class="section-title-about">Team Members</h4>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.TeamMembers)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="team-wrapper mb-30">
+                            <div class="team-img">
+                                <a href="#">
+                                    <img src="~/assets/img/team/@item.Image" alt="">
+                                </a>
+                                <div class="team-action">
+                                    <a class="action-plus facebook" href="#">
+                                        @item.FIcon
+                                    </a>
+                                    <a class="action-heart twitter" title="Wishlist" href="#">
+                                        @item.TIcon
+                                    </a>
+                                    <a class="action-cart instagram" href="#">
+                                        @item.IIcon
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="team-content text-center">
+                                <h4>@item.Name</h4>
+                                <span>@item.Role</span>
+                            </div>
+                        </div>
+                </div>
+                }           
+            </div>
+        </div>
+    </div>
+    <div class="banner-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <div class="banner-img banner-hover banner-mrg">
+                        <a href="#">
+                            <img src="~/assets/img/banner/banner-10.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="banner-img banner-mrg-left-2 banner-hover">
+                        <a href="#">
+                            <img src="~/assets/img/banner/banner-11.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="testimonials-area bg-img pt-75 pb-80">
+        <div class="container">
+            <div class="text-center mb-40">
+                <h4 class="section-title-about">Testimonials</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 d-flex align-items-center">
+                    <div class="testimonial-active about-testi-active owl-carousel">
+                        @foreach (var item in Model.Testimonials)
+                        {
+                        <div class="single-testimonial about-testi text-center">
+                            <div class="quote-icon">
+                                @item.Icon
+                            </div>
+                            <p>
+                                @item.Desc
+                            </p>
+                            <div class="testimonial-rating">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="ion-android-star-outline @(item.Rate>=1?"theme-star-coffee":"")"></i>
+                                }
+                            </div>
+                            <h4>@item.Name<span> /  @item.Promotion</span></h4>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

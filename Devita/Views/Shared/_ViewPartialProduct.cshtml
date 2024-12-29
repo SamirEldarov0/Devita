@@ -1,0 +1,58 @@
+﻿@model List<Product>
+
+@foreach (var item in Model)
+{
+        <div class="custom-col-5 mb-30">
+            <div class="devita-product-2 mrg-inherit">
+                <div class="product-img">
+                    <div class="product-img-slider">
+                        <a asp-controller="product" asp-action="detail"><img src="~/assets/img/product/@item.ProductImages.FirstOrDefault(x=>x.RowStatus==true)?.Image" alt=""></a>
+                        <a asp-action="detail" asp-controller="product"><img src="~/assets/img/product/@item.ProductImages.FirstOrDefault(x=>x.RowStatus==false)?.Image" alt=""></a>
+                    </div>
+
+                    @* <span>@(item.Price != item.DiscountedPrice ? $"-{item.ProductCampaigns.FirstOrDefault()}%" : "")</span> *@
+                </div>
+                <div class="list-col">
+                    <div class="gridview">
+                        <div class="product-content text-center">
+                            <span>@item.Category.Name</span>
+                            <h4><a asp-action="detail" asp-controller="product">@item.Name</a></h4>
+                            <div class="product-price-wrapper">
+
+                                @if (item.Price == item.DiscountedPrice)
+                                {
+                                    <span class="product-price-old">$@item.DiscountedPrice</span>
+                                }
+                                else
+                                {
+                                    <span>$@item.Price</span>
+                                    <span class="product-price-old">$@item.DiscountedPrice</span>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="product-action-wrapper-2 text-center">
+                            <div class="product-rating">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="ion-android-star-outline @(item.Rate>i?"theme-star":"")"></i>
+                                }
+                            </div>
+                            <p>@item.Code</p>
+                            <div class="product-action">
+                                <a class="same-action" title="Wishlist" href="#">
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a class="action-cart" title="Add To Cart" href="#">
+                                    Add to Cart
+                                </a>
+                                <a class="same-action compare-mrg" data-target="#exampleCompare" data-toggle="modal" title="Compare" href="#">
+                                    <i class="fa fa-sliders fa-rotate-90"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
